@@ -2,9 +2,21 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var displayDate = $('#currentDay');
+var timeBlock8 = $('#hour-8');
+var timeBlock9 = $('#hour-9');
+var timeBlock10 = $('#hour-10');
+var timeBlock11 = $('#hour-11');
+var timeBlock12 = $('#hour-12');
+var timeBlock1 = $('#hour-1');
+var timeBlock2 = $('#hour-2');
+var timeBlock3 = $('#hour-3');
+var timeBlock4 = $('#hour-4');
+var timeBlock5 = $('#hour-5');
+var currentDate = moment();
+var currentHour = currentDate.format('H');
 
-var currentDate = dayjs();
-displayDate.text('Today is ' + currentDate.format('dddd MMM D, YYYY'));
+
+
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
@@ -26,3 +38,40 @@ $(function () {
     // TODO: Add code to display the current date in the header of the page.
   });
   
+ function pastPresentFuture() {
+    $('.time-block').each(function() {
+    if ( $(this).attr('data-hour') < currentHour) {
+        $(this).removeClass('future');
+        $(this).removeClass('present');
+        $(this).addClass('past');
+        
+
+        }else if (currentHour === $(this).attr('data-hour')){
+            $(this).addClass('present');
+            $(this).removeClass('future');
+            $(this).removeClass('past');
+            
+        }else{
+            $(this).addClass('future');
+            $(this).removeClass('past');
+            $(this).removeClass('present');
+
+        };
+ });
+}
+
+ function handleSave(){
+
+ }
+
+ function displaySave(){
+
+ }
+
+ function projectDate(){
+    displayDate.text('It is ' + moment().format('dddd MMM D, YYYY h:mm:ss A'));
+ }
+
+ setInterval(projectDate, 100);
+ setInterval(pastPresentFuture, 1000);
+ console.log(currentHour);
