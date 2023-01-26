@@ -13,7 +13,7 @@ var timeBlock3 = $('#hour-3');
 var timeBlock4 = $('#hour-4');
 var timeBlock5 = $('#hour-5');
 var currentDate = moment();
-var currentHour = currentDate.format('H');
+var currentHour = currentDate.format('HH');
 
 
 
@@ -73,5 +73,5 @@ $(function () {
  }
 
  setInterval(projectDate, 100);
- setInterval(pastPresentFuture, 1000);
+ setInterval(pastPresentFuture, 100);
  console.log(currentHour);
