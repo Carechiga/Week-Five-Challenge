@@ -17,11 +17,13 @@ var currentHour = currentDate.format('HH');
 
 
 
+
+
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
-    // use the id in the containing time-block as a key to save the user input in
-    // local storage. HINT: What does `this` reference in the click listener
-    // function? How can DOM traversal be used to get the "hour-x" id of the
+    // use thstorage. HINT: What does `this` reference in the click listener
+    // function? How can DOM traversal be use id in the containing time-block as a key to save the user input in
+    // local ed to get the "hour-x" id of the
     // time-block containing the button that was clicked? How might the id be
     // useful when saving the description in local storage?
     //
@@ -60,12 +62,16 @@ $(function () {
  });
 }
 
- function handleSave(){
-
+ function handleSave(event){
+    var timeBlockText = $(this).siblings('textarea').val();
+    var timeBlockKey = $(this).parent().attr('id');
+    localStorage.setItem(timeBlockKey, timeBlockText);
  }
 
  function displaySave(){
-
+    var arr = ['hour-8', 'hour-9', 'hour-10', 'hour-11', 'hour-12', 'hour-1', 'hour-2', 'hour-3', 'hour-4', 'hour-5'];
+    for(var i = 0; i < arr.length; i++){;
+    $('#overallContainer').children().eq(i).children('textarea').text(localStorage.getItem(arr[i]));}
  }
 
  function projectDate(){
@@ -73,5 +79,18 @@ $(function () {
  }
 
  setInterval(projectDate, 100);
- setInterval(pastPresentFuture, 100);
+ pastPresentFuture();
+ displaySave();
+
+ timeBlock8.children('button').on('click', handleSave);
+ timeBlock9.children('button').on('click', handleSave);
+ timeBlock10.children('button').on('click', handleSave);
+ timeBlock11.children('button').on('click', handleSave);
+ timeBlock12.children('button').on('click', handleSave);
+ timeBlock1.children('button').on('click', handleSave);
+ timeBlock2.children('button').on('click', handleSave);
+ timeBlock3.children('button').on('click', handleSave);
+ timeBlock4.children('button').on('click', handleSave);
+ timeBlock5.children('button').on('click', handleSave);
+
  console.log(currentHour);
